@@ -1,11 +1,6 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
-# Clone Code Credit : YT - @Tech_VJ / TG - @VJ_Bots / GitHub - @VJBots
-
 import sys, glob, importlib, logging, logging.config, pytz, asyncio
 from pathlib import Path
+import re  # Added import for regex filtering
 
 # Get logging configurations
 logging.config.fileConfig('logging.conf')
@@ -19,7 +14,7 @@ logging.basicConfig(
 logging.getLogger("aiohttp").setLevel(logging.ERROR)
 logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
 
-from pyrogram import Client, idle 
+from pyrogram import Client, idle, filters  # Added filters for message handling
 from pyromod import listen
 from database.ia_filterdb import Media
 from database.users_chats_db import db
@@ -41,6 +36,26 @@ files = glob.glob(ppath)
 TechVJBot.start()
 loop = asyncio.get_event_loop()
 
+# Function to filter out mentions and specific text
+def filter_mentions(message: str) -> str:
+    # Remove all mentions except for @NcHSupport
+    message = re.sub(r'@\w+', '', message)
+    # Add @NcHSupport back if it was removed
+    if "@NcHSupport" not in message:
+        message += " @NcHSupport"
+    # Remove specific text
+    message = message.replace("𝕂𝔸ℕℍ𝔸𝕀𝕐𝔸🎭", "")
+    return message.strip()
+
+# New handler for incoming messages to apply the filter
+@TechVJBot.on_message(filters.text)
+async def handle_message(client, message):
+    # Get the text of the incoming message
+    text = message.text
+    # Apply the filter_mentions function to the text
+    filtered_text = filter_mentions(text)
+    # Reply with the filtered text
+    await message.reply(filtered_text)
 
 async def start():
     print('\n')
@@ -92,4 +107,3 @@ if __name__ == '__main__':
         loop.run_until_complete(start())
     except KeyboardInterrupt:
         logging.info('Service Stopped Bye 👋')
-
