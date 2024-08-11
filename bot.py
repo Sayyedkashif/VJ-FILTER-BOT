@@ -31,6 +31,21 @@ from TechVJ.bot import TechVJBot
 from TechVJ.util.keepalive import ping_server
 from TechVJ.bot.clients import initialize_clients
 
+# Function to get time-based greetings
+def get_greeting() -> str:
+    tz = pytz.timezone('Asia/Kolkata')
+    now = datetime.now(tz)
+    hour = now.hour
+
+    if 5 <= hour < 12:
+        return "Good Morning"
+    elif 12 <= hour < 17:
+        return "Good Afternoon"
+    elif 17 <= hour < 20:
+        return "Good Evening"
+    else:
+        return "Good Night"
+
 ppath = "plugins/*.py"
 files = glob.glob(ppath)
 TechVJBot.start()
@@ -54,8 +69,10 @@ async def handle_message(client, message):
     text = message.text
     # Apply the filter_mentions function to the text
     filtered_text = filter_mentions(text)
-    # Reply with the filtered text
-    await message.reply(filtered_text)
+    # Get time-based greeting
+    greeting = get_greeting()
+    # Reply with the greeting and filtered text
+    await message.reply(f"{greeting}, {filtered_text}")
 
 async def start():
     print('\n')
@@ -100,7 +117,6 @@ async def start():
     bind_address = "0.0.0.0"
     await web.TCPSite(app, bind_address, PORT).start()
     await idle()
-
 
 if __name__ == '__main__':
     try:
