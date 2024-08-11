@@ -1,6 +1,7 @@
 import sys, glob, importlib, logging, logging.config, pytz, asyncio
 from pathlib import Path
 import re  # Added import for regex filtering
+import random  # Added import for random quotes
 
 # Get logging configurations
 logging.config.fileConfig('logging.conf')
@@ -46,6 +47,16 @@ def get_greeting() -> str:
     else:
         return "Good Night"
 
+# Define a list of quotes
+quotes = [
+    "Life is what happens when you're busy making other plans. – John Lennon",
+    "Get busy living or get busy dying. – Stephen King"
+]
+
+# Function to get a random quote
+def get_random_quote() -> str:
+    return random.choice(quotes)
+
 ppath = "plugins/*.py"
 files = glob.glob(ppath)
 TechVJBot.start()
@@ -62,21 +73,38 @@ def filter_mentions(message: str) -> str:
     message = message.replace("𝕂𝔸ℕℍ𝔸𝕀𝕐𝔸🎭", "")
     return message.strip()
 
-# New handler for incoming messages to apply the filter
+# New handler for incoming messages to apply the filter and handle /time command
 @TechVJBot.on_message(filters.text)
 async def handle_message(client, message):
     # Get the text of the incoming message
     text = message.text
+
+    # Handle /time command
+    if text.startswith('/time'):
+        greeting = get_greeting()
+        current_time = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%H:%M:%S")
+        quote = get_random_quote()
+        response = f"{greeting}, {message.from_user.first_name}!\n\nThe current time is {current_time}.\n\nHere's something for you: {quote}"
+        await message.reply(response)
+        return
+
     # Apply the filter_mentions function to the text
     filtered_text = filter_mentions(text)
+
     # Get time-based greeting
     greeting = get_greeting()
+
     # Reply with the greeting and filtered text
     await message.reply(f"{greeting}, {filtered_text}")
 
+# Global flag to check if restart message has been sent
+restart_message_sent = False
+
 async def start():
+    global restart_message_sent
+    
     print('\n')
-    print('Initalizing Your Bot')
+    print('Initializing Your Bot')
     bot_info = await TechVJBot.get_me()
     await initialize_clients()
     for name in files:
@@ -107,11 +135,17 @@ async def start():
     today = date.today()
     now = datetime.now(tz)
     time = now.strftime("%H:%M:%S %p")
-    await TechVJBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(today, time))
+    
+    # Send restart message only once
+    if not restart_message_sent:
+        await TechVJBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(today, time))
+        restart_message_sent = True
+
     if CLONE_MODE == True:
         print("Restarting All Clone Bots.......")
         await restart_bots()
         print("Restarted All Clone Bots.")
+        
     app = web.AppRunner(await web_server())
     await app.setup()
     bind_address = "0.0.0.0"
