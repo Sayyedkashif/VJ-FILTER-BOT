@@ -1,4 +1,4 @@
-# Don't Remove Credit @VJ_Botz
+# Don't Remove Credit @Nch_Support
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @Sayyed_Kashifali
 
@@ -271,18 +271,18 @@ async def start(client, message):
                         text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{user_id} \n•• ᴜꜱᴇʀɴᴀᴍᴇ : {username} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {fileName}",
                         quote=True,
                         disable_web_page_preview=True,
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀 Fast Download By Kashif 🚀", url=download),  # we download Link
-                                                            InlineKeyboardButton('🖥️ Watch online By Kashif 🖥️', url=stream)]])  # web stream Link
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚀Fast Download BY NCH By Kashif 🚀", url=download),  # we download Link
+                                                            InlineKeyboardButton('🖥️ WAtch Online BY NCH By Kashif 🖥️', url=stream)]])  # web stream Link
                     )
                 if STREAM_MODE == True:
                     button = [[
                         InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                         InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                     ],[
-                        InlineKeyboardButton('𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥', url="https://t.me/Sayyed_Kashifali")
+                        InlineKeyboardButton('N̶o̶t̶C̶r̶a̶z̶y̶H̶u̶m̶a̶n̶�', url="https://t.me/Sayyed_Kashifali")
                     ],[
-                        InlineKeyboardButton("🚀 Fast Download By Kashif 🚀", url=download),  # we download Link
-                        InlineKeyboardButton('🖥️ Watch onlineBy Kashif 🖥️', url=stream)
+                        InlineKeyboardButton("🚀Fast Download BY NCH By Kashif 🚀", url=download),  # we download Link
+                        InlineKeyboardButton('🖥️ WAtch Online BY NCHBy Kashif 🖥️', url=stream)
                     ],[
                         InlineKeyboardButton("• ᴡᴀᴛᴄʜ ɪɴ ᴡᴇʙ ᴀᴘᴘ •", web_app=WebAppInfo(url=stream))
                     ]]
@@ -291,7 +291,7 @@ async def start(client, message):
                         InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                         InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                     ],[
-                        InlineKeyboardButton('𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥', url="https://t.me/Sayyed_Kashifali")
+                        InlineKeyboardButton('N̶o̶t̶C̶r̶a̶z̶y̶H̶u̶m̶a̶n̶�', url="https://t.me/Sayyed_Kashifali")
                     ]]
                 msg = await client.send_cached_media(
                     chat_id=message.from_user.id,
@@ -476,16 +476,16 @@ async def start(client, message):
                     InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                     InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                 ],[
-                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="t.me/Sayyed_Kashifali")
+                    InlineKeyboardButton("N̶o̶t̶C̶r̶a̶z̶y̶H̶u̶m̶a̶n̶�", url="t.me/Sayyed_Kashifali")
                 ],[
-                    InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @Sayyed_Kashifali
+                    InlineKeyboardButton('🚀Fast Download BY NCH / WAtch Online BY NCH🖥️', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @Sayyed_Kashifali
                 ]]
             else:
                 button = [[
                     InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                     InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                 ],[
-                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="t.me/Sayyed_Kashifali")
+                    InlineKeyboardButton("N̶o̶t̶C̶r̶a̶z̶y̶H̶u̶m̶a̶n̶�", url="t.me/Sayyed_Kashifali")
                 ]]
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
@@ -549,16 +549,16 @@ async def start(client, message):
                     InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                     InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                 ],[
-                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="t.me/Sayyed_Kashifali")
+                    InlineKeyboardButton("N̶o̶t̶C̶r̶a̶z̶y̶H̶u̶m̶a̶n̶�", url="t.me/Sayyed_Kashifali")
                 ],[
-                    InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @Sayyed_Kashifali
+                    InlineKeyboardButton('🚀Fast Download BY NCH / WAtch Online BY NCH🖥️', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @Sayyed_Kashifali
                 ]]
             else:
                 button = [[
                     InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
                     InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
                 ],[
-                    InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="t.me/Sayyed_Kashifali")
+                    InlineKeyboardButton("N̶o̶t̶C̶r̶a̶z̶y̶H̶u̶m̶a̶n̶�", url="t.me/Sayyed_Kashifali")
                 ]]
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
@@ -568,7 +568,7 @@ async def start(client, message):
             )
             filetype = msg.media
             file = getattr(msg, filetype.value)
-            title = '@VJ_Botz  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), file.file_name.split()))
+            title = '@Nch_Support  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), file.file_name.split()))
             size=get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
             if CUSTOM_FILE_CAPTION:
@@ -592,7 +592,7 @@ async def start(client, message):
             pass
         return await message.reply('No such file exist.')
     files = files_[0]
-    title = '@VJ_Botz  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
+    title = '@Nch_Support  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
     size=get_size(files.file_size)
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
@@ -602,7 +602,7 @@ async def start(client, message):
             logger.exception(e)
             f_caption=f_caption
     if f_caption is None:
-        f_caption = f"@VJ_Botz  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}"
+        f_caption = f"@Nch_Support  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}"
     if not await db.has_premium_access(message.from_user.id):
         if not await check_verification(client, message.from_user.id) and VERIFY == True:
             btn = [[
@@ -621,16 +621,16 @@ async def start(client, message):
             InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
             InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
         ],[
-            InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="t.me/Sayyed_Kashifali")
+            InlineKeyboardButton("N̶o̶t̶C̶r̶a̶z̶y̶H̶u̶m̶a̶n̶�", url="t.me/Sayyed_Kashifali")
         ],[
-            InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @Sayyed_Kashifali
+            InlineKeyboardButton('🚀Fast Download BY NCH / WAtch Online BY NCH🖥️', callback_data=f'generate_stream_link:{file_id}') #Don't change anything without contacting me @Sayyed_Kashifali
         ]]
     else:
         button = [[
             InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=f'https://t.me/{SUPPORT_CHAT}'),
             InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
         ],[
-            InlineKeyboardButton("𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥", url="t.me/Sayyed_Kashifali")
+            InlineKeyboardButton("N̶o̶t̶C̶r̶a̶z̶y̶H̶u̶m̶a̶n̶�", url="t.me/Sayyed_Kashifali")
         ]]
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
