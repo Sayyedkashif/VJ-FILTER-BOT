@@ -32,14 +32,6 @@ def get_greeting() -> str:
     else:
         return "Good Night"
 
-def get_random_quote() -> str:
-    quotes = [
-        "The best way to predict the future is to invent it.",
-        "Life is what happens when you're busy making other plans.",
-        "You only live once, but if you do it right, once is enough."
-    ]
-    return random.choice(quotes)
-
 # Function to filter out mentions and specific text
 def filter_mentions(message: str) -> str:
     # Remove all mentions except for @NcHSupport
@@ -61,7 +53,7 @@ async def handle_message(client, message):
     # Get time-based greeting
     greeting = get_greeting()
     # Reply with the greeting and filtered text
-    await message.reply(f"{greeting}, {filtered_text}")
+    await message.reply(f"HEY {message.from_user.first_name}, {greeting} 🌞\n\n{filtered_text}")
 
 async def start():
     print('\n')
