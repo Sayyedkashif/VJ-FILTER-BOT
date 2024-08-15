@@ -1,4 +1,4 @@
-import sys, glob, importlib, logging, logging.config, pytz, asyncio
+import sys, glob, importlib, logging, logging.config, pytz, asyncio, random
 from pathlib import Path
 import re  # Added import for regex filtering
 from pyrogram import Client, idle, filters
@@ -66,8 +66,12 @@ async def handle_message(client, message):
 async def start():
     print('\n')
     print('Initializing Your Bot')
+    # Initialize and start the client
+    await TechVJBot.start()
+    
     bot_info = await TechVJBot.get_me()
     await initialize_clients()
+    
     for name in files:
         with open(name) as a:
             patt = Path(a.name)
@@ -79,31 +83,33 @@ async def start():
             spec.loader.exec_module(load)
             sys.modules["plugins." + plugin_name] = load
             print("Tech VJ Imported => " + plugin_name)
+    
     if ON_HEROKU:
         asyncio.create_task(ping_server())
+    
     b_users, b_chats = await db.get_banned()
     temp.BANNED_USERS = b_users
     temp.BANNED_CHATS = b_chats
     await Media.ensure_indexes()
+    
     me = await TechVJBot.get_me()
     temp.BOT = TechVJBot
     temp.ME = me.id
     temp.U_NAME = me.username
     temp.B_NAME = me.first_name
+    
     logging.info(LOG_STR)
     logging.info(script.LOGO)
-    tz = pytz.timezone('Asia/Kolkata')
-    today = date.today()
-    now = datetime.now(tz)
-    time = now.strftime("%H:%M:%S %p")
-    # Send restart message only if it hasn't been sent yet
+    
     if not temp.RESTART_MESSAGE_SENT:
-        await TechVJBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(today, time))
+        await TechVJBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(date.today()))
         temp.RESTART_MESSAGE_SENT = True
+    
     if CLONE_MODE:
         print("Restarting All Clone Bots.......")
         await restart_bots()
         print("Restarted All Clone Bots.")
+    
     app = web.AppRunner(await web_server())
     await app.setup()
     bind_address = "0.0.0.0"
@@ -111,7 +117,5 @@ async def start():
     await idle()
 
 if __name__ == '__main__':
-    try:
-        loop.run_until_complete(start())
-    except KeyboardInterrupt:
-        logging.info('Service Stopped Bye 👋')
+    # Use asyncio.run() to manage the event loop
+    asyncio.run(start())
