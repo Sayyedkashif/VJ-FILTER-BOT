@@ -1,8 +1,6 @@
 import sys, glob, importlib, logging, logging.config, pytz, asyncio
 from pathlib import Path
 import re  # Added for filtering mentions
-
-# Get logging configurations
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 import datetime  # For time-based greeting
@@ -45,9 +43,25 @@ def filter_mentions(message: str) -> str:
     message = message.replace("𝕂𝔸ℕℍ𝔸𝕀𝕐𝔸🎭", "")
     return message.strip()
 
+# Function to send a greeting message
+async def send_greeting(client, message):
+    user_first_name = message.from_user.first_name
+    tz = pytz.timezone('Asia/Kolkata')
+    now = datetime.now(tz)
+    current_time = now.strftime('%p')
+    greeting = f"Good {'Morning' if current_time == 'AM' else 'Afternoon/Evening'}, {user_first_name}! 👋"
+    greeting_message = (
+        f"{greeting}\n\n"
+        "I am a powerful auto-filter bot. You can use me in your group for auto-filtering with link shortening. "
+        "Just add me as an admin in your group, and I'll provide movies with your link shortener."
+    )
+    await client.send_message(chat_id=message.chat.id, text=greeting_message)
+
 # Adding a new handler for incoming messages
 @TechVJBot.on_message(filters.text)
 async def handle_message(client, message):
+    # Send greeting message when a user sends a message
+    await send_greeting(client, message)
     # Get the text of the incoming message
     text = message.text
     # Apply the filter_mentions function to the text
@@ -103,7 +117,6 @@ async def start():
     bind_address = "0.0.0.0"
     await web.TCPSite(app, bind_address, PORT).start()
     await idle()
-
 
 if __name__ == '__main__':
     try:
