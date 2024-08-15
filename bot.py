@@ -1,6 +1,6 @@
 import sys, glob, importlib, logging, logging.config, pytz, asyncio, random
 from pathlib import Path
-import re  # Added import for regex filtering
+import re
 from pyrogram import Client, idle, filters
 from pyromod import listen
 from database.ia_filterdb import Media
@@ -16,6 +16,9 @@ from plugins.clone import restart_bots
 from TechVJ.bot import TechVJBot
 from TechVJ.util.keepalive import ping_server
 from TechVJ.bot.clients import initialize_clients
+
+# Define the files variable with the list of plugin filenames
+files = glob.glob('plugins/*.py')  # Adjust the pattern as needed
 
 # Function to get time-based greetings
 def get_greeting() -> str:
@@ -72,17 +75,17 @@ async def start():
     bot_info = await TechVJBot.get_me()
     await initialize_clients()
     
+    # Load plugins
     for name in files:
-        with open(name) as a:
-            patt = Path(a.name)
-            plugin_name = patt.stem.replace(".py", "")
-            plugins_dir = Path(f"plugins/{plugin_name}.py")
-            import_path = "plugins.{}".format(plugin_name)
-            spec = importlib.util.spec_from_file_location(import_path, plugins_dir)
-            load = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(load)
-            sys.modules["plugins." + plugin_name] = load
-            print("Tech VJ Imported => " + plugin_name)
+        patt = Path(name)
+        plugin_name = patt.stem
+        plugins_dir = Path(f"plugins/{plugin_name}.py")
+        import_path = "plugins.{}".format(plugin_name)
+        spec = importlib.util.spec_from_file_location(import_path, plugins_dir)
+        load = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(load)
+        sys.modules["plugins." + plugin_name] = load
+        print("Tech VJ Imported => " + plugin_name)
     
     if ON_HEROKU:
         asyncio.create_task(ping_server())
