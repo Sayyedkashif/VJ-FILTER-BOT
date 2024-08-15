@@ -1,4 +1,4 @@
-import sys, glob, importlib, logging, logging.config, pytz, asyncio
+import sys, glob, importlib, logging, logging.config, pytz, asyncio, random
 from pathlib import Path
 import re  # Added import for regex filtering
 from pyrogram import Client, idle, filters
@@ -111,7 +111,9 @@ async def start():
     await idle()
 
 if __name__ == '__main__':
+    loop = asyncio.get_event_loop()  # Initialize the event loop
     try:
         loop.run_until_complete(start())
     except KeyboardInterrupt:
         logging.info('Service Stopped Bye 👋')
+        loop.stop()  # Stop the loop gracefully
