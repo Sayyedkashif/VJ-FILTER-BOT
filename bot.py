@@ -3,6 +3,9 @@ from pathlib import Path
 import re  # Added for filtering mentions
 
 # Get logging configurations
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+import datetime  # For time-based greeting
 logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
