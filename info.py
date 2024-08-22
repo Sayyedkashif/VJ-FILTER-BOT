@@ -1,7 +1,3 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 
 import re
 from os import environ
@@ -17,7 +13,7 @@ def is_enabled(value, default):
         return default
 
 # Bot information
-SESSION = environ.get('SESSION', 'TechVJBot')
+SESSION = environ.get('SESSION', 'Sukuna')
 API_ID = int(environ.get('API_ID', '27317700'))
 API_HASH = environ.get('API_HASH', 'de1077f45e29e6abebcd2b9dd196be1d')
 BOT_TOKEN = environ.get('BOT_TOKEN', "")
@@ -39,7 +35,7 @@ AUTH_USERS = (auth_users + ADMINS) if auth_users else []
 
 REQUEST_TO_JOIN_MODE = bool(environ.get('REQUEST_TO_JOIN_MODE', False)) # Set True Or False
 TRY_AGAIN_BTN = bool(environ.get('TRY_AGAIN_BTN', False)) # Set True Or False (This try again button is only for request to join fsub not for normal fsub)
-auth_channel = environ.get('AUTH_CHANNEL', '-1002158262712') # give your force subscribe channel id here else leave it blank
+AUTH_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNEL', '-1002100280219 -1002236083255 -1002158262712').split()] # give channel id with seperate space. Ex : ('-10073828 -102782829 -1007282828')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 reqst_channel = environ.get('REQST_CHANNEL_ID', '')
 REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_channel) else None
